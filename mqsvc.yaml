@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: my-mq
+  name: my-mq-channel
+spec:
+  ports:
+  - port: 1414
+    protocol: TCP
+    targetPort: 1414
+  selector:
+    run: my-mq
+  type: LoadBalancer
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: my-mq
+  name: my-mq-web
+spec:
+  ports:
+  - port: 9443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    run: my-mq
+  type: LoadBalancer
